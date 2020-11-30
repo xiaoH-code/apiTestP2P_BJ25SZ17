@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>金融项目接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>金融项目接口自动化测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2020-11-29 16:50:05</p>
+<p class='attribute'><strong>运行时长:</strong> 0:03:52.741294</p>
+<p class='attribute'><strong>状态:</strong> 通过 23 失败 5 错误 7</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>v1.0</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='errorClass'>
+        <td>script.test_login.TestLogin</td>
+        <td>20</td>
+        <td>17</td>
+        <td>2</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c1',20)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test01_get_img_code_success_random_float</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 110: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 26, in test01_get_img_code_success_random_float
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�\n����n�Ci���\x0byP��\x1ba��˟N?Z�{���-�$��#|��L�s�~!H��_X��\\֣�����\x03,������Rz�u��\x0eq\x0c���C�iZdq�\x00f\x16�RY\x14*�#3s��q�\u07b5�2j2ۧ��\x16\n�Ko��dn;�00O\x03���zW\x1d�����6�\x16�jCq\x10\x04F\x01��\x08�&lt;��\x18�pA���\x1a\x16�����B\x06 �b%#��c��y98\x19*/ DZ��hzL�6�;7�Uvi\x06���I�\x18\x00�2{�*���ɨi�r���]:�\x7f*|,l�\x18\r��aǿl�\t^�\x00�v�\x17R�\x15��т��Ȅ��\'\n3�,1���\x01U-\x06�e�/��������{T�y\x18c�\x13�r)\x07�cMֵwԮlb+wt��\x18�\x1e�f�\x1ep:��g�\x02�6��i\x1a��Z��q\x05ӔQ\x12�GN�\x03�u�Mky�}Y�4��ű���\x0e\t$�㑟J�_\x15Z�j�wwVҤV�J���\x00�8��08��\x17�u�p.6��xb\x1f|���\x05H��\x00@ �`�9�u�\x1b\x1bϲ٤��R��ÿ�\x0c\x01��\x14p8��3Gyiy��}f�ꑗV@r[�W\n\x0bg�\x02s��湏�6��ߋŕ&lt;�\r\x14�8۟N�\x07�B1N�\x14䭦�֟��Ϫ�3Q��&lt;�\x02є~Ü\x1f���V�C}\x11I!�J\x0b\x12��\\/8�9��;w&gt;��A��^��.���Ha)\x14�m\x05��9�\x00x���^�i_5$W�l���i�\x11�DBx����H_��=\x0f�(�\x04v�C�h�q��\x1c��\x14\x15�a\x1c:�PÒ&gt;e#�q��\u05fdqzm�h�ƥ\x1e�d�;�2,�6\x1b�N\x08#��=�\x10G=�b��\x08�]\x08W�yR0�\x1c}Aǡ��1���j#�|����ˎ��S��ǭ\n�\x08h�u[��h\u1cb4F\x16�]��\x15!\x15G\x03\x19\x00��8��9���l�m&gt;m4^,����\\oS����}p@\x1cU�\t,+)�����@`\x0e3�\x1c`���o^)\x0e�n��\x04�\x0e\x00&gt;���\x00Z\x1a�P�ò��4{\x15��Ӯ�\x11���f�@˞�V6w���\x1e�5��[Z.��D\x1et�\x1c�o�\u05ca�\x06\x18#���"��Q�\x16.�&gt;C9ǯ\x01�9&lt;d�����ܢ\x1d=��\x07���b4�\x19䑓�l�&lt;�-`�vT�U��:z���[�2,�/u%�\x03\x199\x01A&lt;w\x00g��.��&amp;,�#�\x04D�l��v���\x01�8��t\x16�F5\x0b�1�$Q����{s��U��!on�]����\x1b�y\x19�\x19&gt;�u4\x0bS;���B)��`\x11ZK3I\x13\\I�ٜch�ϿN*Mb;��n�H��Q\'_9�"\x05\x17h8\x1c���x5ת�"�(UQ�\x00�\x02�u�\x12]B{{�+�o{o�\x1c�#�����-���xAc�����\x0eȋ����\x01PO���?\x01����Yj��VN�����j\x18\x15�;z�c��\x11躅�Q�j\x02hT����b:n8\x04�j�\x00*�P\x00\x03\x00\x0e�y�F\x0c�v�\\��u�?嬪���\x0bǷ�Eo�AW}��\x18�B�`\x03\x06�X��9\x1c��t���T��$��p�����\x14Q@�e�GX�2\x01\x1b\x06]�0�\x1e�?0�9\x15��MJ�K�\x16km�c���q�&lt;�~;�E\x04��WE��n�+�BI%�)&gt;Dݵ\x01\\\x10�G\x19���B����(TQ�U\x18\x00z\n(�\x16\x16�(�\x01E\x14P\x01E\x14P\x01E\x14P\x07��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test02_get_img_code_success_random_int</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>pt1.2: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 108: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 36, in test02_get_img_code_success_random_int
+    logging.info("response = {}".format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�v;T��\x0c�-�����\'յ �3\x19\x19R&amp;9HT\x7f\x08^���WU^{u�2����ó\\�c\\��ڭ�\x01\x18\x03�S؎�Vp�v���Ǉ������ؾ[\x04�\x1e�N&lt;�\t\x03�w\x0fl�Ew{oe\x11�y\x02����Y��98�+�Iu�\x0c%�7�\x7fgK �a۸g�7c9�\x00\x0e\x0fz�R;Kd�\x01px�ؖ&lt;\x0c��rzz��Q=��\x07��9]:�o\x16�����}��U`��\x11��t�Ny�=���;\x03Yx�R��w6\x11 %7�T���\x1f��~\x1c���-7Sg���ԒCb�V5��e�*\x08�\x07@O&gt;��ix[T\x10Ht{�6��B]�f8��`��\n���!Z��C�\\I\x0e�5�\x12F�������m\x0c\x008��xn\x08=3�W?��\x16:�5-I���V`�� G�~P\x061�\x0e=�GU�㳲7\x13�\x1c����\x10��l��q��A��sߕo\x0f��v�\\Z���\x07̴�����O?�B���\x1c�����\x0e�Ʃ\x0e�+\r.7\n��a�#!y\x1d�\x0c���溉�Rh�7�`�rJJ�G~�A\x15��]R���a�\x18�M��$\x00\x1e�\x18`I�l�����&lt;X�Is�iH�\x0b;�\x02�L\x0c��\x07ឝ:zT8�Lj�7(���),�!�QK���\x00|�"�c�\t����kꩡŢ��;Anc�&amp;0\x15�z\x14\x1e�?�Yo\ri���jlm�&amp;2\x19����\x13�u=}\x07\x15��nm.\x0f2-F;v��l��7o�#\x19�\x04\x03���W\x16�t�L���t�\x15��m\n&amp;�ys�#%I,���\x7f\x0cQV\x1bĶ��\x05��s\x11\x00�����pFr�:�)rJZ���{HGF���2إ��ek�c\x0eĬ�\x11�d\x05d dd�\x07\x19�A�1�gM���ֳ���\x114)4�dL���\'\x1d;`�\x185�yj�\'�\x18B��\x07�&lt;\x0eprN\x14\x0e}��\x14�q\x13��\x11�P\x18nR\x01\x078�g���ǭJn��P��3��v�\\��y\x06\x1b\x08\\M4��$`\x0fʙ�#�8\x1f�C��\x0by[�Wv�I�\x11\x00��\x1f(# \x01��#\x15vX�nX�3\x14%\x11� 6?&lt;\x0c�����H�[�NT�%���N\x08��8$~?�6����L��_\x14�0i\x16�M1��#���0;u�\'�ƛ\x14\x13k\x1a��"Ւ�8\x0cV�(��\x12\x0f-�\x9dǜ\x1e1ץmǧ�7F�\x04�����RW\x19�v7\x12x�I�����\tl�a1!\x01,��qԀ\x07&gt;��)�\'t%y%\x19\x1c�V��鷐�����8\x0c��o�u?t��OJ�\x1f���d0[�^L�p�\x10`��\x18��#9�9\'�\x05hϩ�$6�v�^O��G\n���ǁ��\x1fLqDZu�����\nI���\x15Q��3�}}����4�\ue63a-�v���s��\te3&lt;\x16��~�ی��-��qZ/�O�Y�/�\x18�����OfR8�\x00\'�ض���\x11\x15�K\x1a\x0e�:���&gt;�-K��5OMNR���\x17%U�˗�~�ʛ����niZE��k�Z���ݹg&gt;��Iɽ\x0bP�wAE\x14T�V�C=�·\x02\t���F~E&lt;����U\rST��\'1�M���q�\x13�G�h���9���)s\x7f]���#�1�8��3Q������\n��6���\x07�\x0b&amp;����KX���ou+\x7fZ�����i�iʗ7RD\x01\x1c\x05V`:\x7f�?Z}�\x07Y\x0c׳���W0��F$w\x03�6�sמ�%\x14��+�\x00[��o��t���o�\x1cp�#�\x15\x10tU\x18\x03�QEfu�\x14Q@\x05\x14Q@\x05\x14Q@\x1f��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test03_get_img_code_fail_param_is_null</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test04_get_img_code_fail_param_is_char</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test05_get_sms_code_success_param_is_true</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        通过</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <pre>pt1.5: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 111: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 69, in test05_get_sms_code_success_param_is_true
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�:�i�@ҸPN\x06z��\x03��\x15Zc(be���=�T \x1b�N\x14\x16l�I\x1cc�\x03\'�=&amp;�ɭ�\x06�d%���=ē�\x08!F\x18��@\x00\x01�u"�1r5nۗ5\x1f\x11�E|�\x16\x16&amp;[�\x00*$lc�H��&lt;�Gp;ןX�ӊ����/d�`g�\r\x13��0\\(�}?Ƴo\'��&lt;M\x06��۠\x0f�"\x03��.8��~U/�\r�^�;]*�\x04e��.�r3�\x1fw�}���Ai؋�KZ���ab��kR4�m-\x12.�䁀:\x1e��5��I=�3J�5x�E(�\x10̧p+�`dc9��`\x13�ͪ����Yɧ�&lt;0�\x12c\x08,$ێ\x0b\x00y�\x07 �A��f\x1b�k8�kY�P&lt;�\x06У\x0b�\x00�8�\x02�q|�����������[�\x19�\x11��I������\\���[��K�jLn���!�lG�~P\x01\x18�\x7f\x1fƵ����4�{��7!\x16\x12��\x0fa��x�Y�\x1dj��[�2`�^�\'&lt;/a��sJ��{\x0e[�z\x04\x1e^��ZZI!��m�s��C�\x7f\x10��\x1eե{�ŧ\\}�$�S��&amp;%��=N;~��^\x17�m���\x05��[�\x07l�\x02}&gt;���\x1d����\x1e�lR�sss\x0c7�ϛ�:���A��\x19\x1e���\x14���\tl�m�Z�z�.��Fc*\x1dd�&lt;�\x0fn�={qΓ\x06�W��&lt;W+��i��z���[E�\\\x15Di@,\x07V\x04�$��we@�s�G\x1c7\x1d�����k9+;\x0e.���\x18c�`I\x06��C;�R�29\x1f��i��@x=z��(�ܒv�\x003E\x16��a3Hᡏ`?+��\x11��\x1cs��a��ډ�7}u-�m�{�\x1c�\x10%Q�ʜs����\x00��X�J��$����\x00����;}:���y�\t�\x1b�20\x07\x0b�`c\x18�g\'=Ǧ4Mkr\x1a����T��-`��i.\'iC�PN\x06\x0f���u�$Ri�\x04�$+p-�H��/\\��?*�x-�I\x10D"\x12�\x19�\x1b\tϺ���J.`�C\x11 ��`��\x1e\x06G�?���YEt\x17/^�\'�n@У��F�cxʜe��\x1c��&lt;\x1c�\nֳC}⧿��\n��H\x0e�,��9��\x07�Aڟ7�4D�v0ܒ�!��)��\x07&gt;��ҵ--�yA\nZ�\x01�� ��\x06\x07�ڇ5v��&amp;�љ&gt;+�he��2$Ky�\x18�\x00O��{|���������H��E���\x0f�\x05��\'\x1f�ִ�E�\x05ZTk�Bv��\\�{s�\x0c�v8��1\x1cH�����\x1f�;�$�V{���\x04��yqwgv.�%�Y\x16"\x14`�1�r{�v�\x1e�#�)�n⸸�y���2���\x0e\x0b\x1e;\x13]�cx�J�Q��[F\x0bwl�dD�g���������N:\x19\x12�z\x0cp\x14�+�v���,ہSקL\x0c���\u05ed\\�ЛG��z�8G�,\x0e\x146\x00#9\x1c\x1e8�)V\x0f\x10j�}�P\x10�[\x1e%1\x1c���\x1c�3�}+M�=2HR#g\x10T�\x1bF���Qɢm�fƷ�E�vFC,\x04J����u�\x0f�\x07J+9�)7|���ss\x10��&gt;8����v�y�/�W/g���F\x14�0��\x1b�!I\x19���W\x0eW���\x7f\x8a*^Ȯ�䐣\xa0\x0c;�?��?ҹM7W���x��A\x1cR�\n�6�\nO\x07�o^�QC؋��_�\x1dU�������#\x0crv���55\x14Ph\x14QE\x00\x14QE\x00\x14QE\x00\x14QE\x00\x7f��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test06_get_sms_code_fail_img_code_is_wrong</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        通过</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <pre>pt1.6: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 112: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 92, in test06_get_sms_code_fail_img_code_is_wrong
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�j��V�&gt;��+[\x10�� �?�F\t\'��m;�h��\x15\x14\x12��\x00\x0fS\\���C�\x08���C\x1d�d3�3~�?B�u���:f�F�%h�\\��ZzY=��W\x06tM��b��s�\x15CK�,��\x17�����11T�#�����=q�VL��L���W��t�~�2\x1d��&lt;\x1e:��q]����]iMn���"�M�\x12\x07�\x02\x02�oǏjm�E�Xhd���ԡ\x17zƤ�H�[\x08~D\x04\x1e��\x0f\x00\x0e\x0f^�o��O&amp;�\x1b\\4�Ie��$lS�\x0eI\x1e�\x1e���K-u���M*o?N\x0eт6�|��\x19�\x04��&gt;���kw\x12ܦ�uf֓�&gt;D��\x0c�}�\x1c�r\x0f8��4(�&amp;����\x17������I%��)�Db#�RF\x01�\x00\x1c�}��z�f��ͫ���LRC"�B\x06YA8�$�q�O~�8\x1b�-5;KK�Z{ۗ��I���\\�*~��8\x07�y�\x07�H�]:�Ě���Z4Xʦ�\x003���d`\x0eh�*�K�;\x1d$/yul���dl�I��\x13��\x04)�� �d���\x06���\x05�������p�X;c�\x0f�zq֤�?h�/�州9U&gt;d�\x18�\'��&lt;\x7f���oSY&gt;\x19������E��Y\t�S�e�@P:���\x7f��KV[��\\�ӵ+MG}ͼ�\r�\x19f���&lt;\x06�\x1e�F9鉧$\x032�*($���\x0cu8&lt;c��+\x03�ֶ���\x19b�Kv|���p�&lt;\x10G\x1d�;\x0c\x1e*�ھ�\x04~lZ�h���\x13�U�3�\x17\'\x1d\x7f�20M�7e�.n\x03c̅q�p �[�\x15N/\x14�:e���q����Fh��d\n���\x06��\x10\x07�Ÿ��8e�-�璻��\u05cct\x1e��i�I��]ǪCs\x14w\x12��p\x108�;�Ǒ�ӌ��1�����T)�\x02�\x04\r�a��G�*\'K�&lt;�*і�\x19�\x1b&gt;R0\x14\x01�d)�?�y\x1b@�CG\x1b����j�R����NĖ����Ű!\x1e���8�&lt;w�\x1bW��-\x12x �%�ݒ3\x19�r\x17�\x7f�+R e��˶Gd\x1b��P\x13�~S�&gt;��Ryll�ԟd&gt;H�J������x\x18\x04d��\x1e1�\x1b3侽�\x00�3\x03D�4i4\x18m��V\x13\x1a��\x0b\x1f�@r0A�A�&lt;zzqR[Ⱥ��\x06��[@�\x18\x1d�&amp;RI\x19�\x06B��$�x�ƂX�[�� n�=Ğ\x0er�������\x16�A#Gu\x14r\x08�$�/�\x17=\x0e\x0e���\x0f�\x1c\x17ԋ7e��W�l�紸��Ȓ�G�%Y�\x00p\x0f8ȩl�\x1d\x05t�i�\x0eY\x13{�s�8\x19��3���\x0c�椛��-嵁d�;eZI�j�pH���G=k&amp;\x0f\r���@�B!@\x02�[��s�}�&gt;aӎ\x84�\x05�_���-�i���m��=�\x01��!`QI�[8\x1c�g�\x14�՝�xm��g�c���P&gt;�\x16]c\x1dX玙\x1ct��Mӡ���\x1c�\x0e�s���&amp;�&lt;Oaw&lt;v��\x0b���M�?�\x0e3��8��[�*~�\x0b�\x02Y\x0bi\r����)(de+�|\n��E&amp;�mv`�n\x1dYZU@\x19�b9=OAU�٬�\x1bTӟN���g����\x15H\x1c�_�[���Y��m\n�5\n��T#\x1ek�hME\x14R6"�B�B�\x0c;�9�\x00t��Yz]䏮��\x0c����\x0f�\x17\x0f+2rώ\t�@�\x0e\x05\x14R����\rl�Y-�)��\x04�L\x08�$���\x18#\x07�\x11ۧ_Z{\x0c��\x1cu��d��_W��\x1dY-��U��Vx��X�L�G]�\x1f�#V�?e\x05š�%@��H�ˀ\x14\x10J�1�\n���\x14QYŶ�hk;3~�(�\x0e���(\x00��(\x00��(\x03��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test07_get_sms_code_fail_img_code_is_null</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        通过</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <pre>pt1.7: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 112: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 111, in test07_get_sms_code_fail_img_code_is_null
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00��ļ���Z].9�\x08�7��p�z�\x1f���\x16��ݒ+`�\x1cy�8��\x05�~�o�sw���jL��D�\x12���B\x0c\x12\x00�9�2;����h�j��i�\x13�s�.�̈́#\x17\x0c{�zg8�}�V�q�y\x02N�e�C*Z�\x11���8���\x10\x0f\x1cu�nͥӵ\x08-�(�r(�\t\x1d�T\x03��Ӟ��\\I-��Ӕvڥ�\x12\x1e�ߥ+���;�\x1a�;y����^F\x04\x12z�y�\x1d��\x1c\x0c�{�CS��\x0b;�*\x18\x00V�D\x05߶J�\x00N\x0fa�*\x0bH�58���챇��\t\x0b�z�\x00�N��\x0c�Z�9���K�ı��\x05�\x19\x19�=G8���l,kͨ^X_�\'_:�UE��&amp;\x15�c��8Rrr@��b֝���]�gul�� \u074c�G�#�\\�8mmn5\x19�\x126ʧ�nz\x100FG�;\x11V��a�^\x17h�4F/)�r���\x04s�\x078��E��Ԭ��$\x1cg���u�&amp;�{q�����8v��\x11��&gt;P�\x08&lt;�2� ���`�n�����4.�\x14m�Ք�9����mPOc��\x00iZʯ�a\n7S�\x18�AE�"y$�4��Y$�i��_)��Ttl\x02\x00\'�s�=3�[��_���O �+�\x1a�ɪE.�\x0c���\x11(\\�\'�\x1c����u��\x01\x14���s�T¨^X\x13�H#\x00�\x07�\x04�%~���hCe�\x16\x04�^�T"�c\x04F��Io��I�&lt;w$�E\x02\x1d:��K\x13#m\x7f�\x18�*�N\x019�\x19=\x0ex����K���-���C��2�d�\'n\x08a�ۜ�\x1e9�\x19�]70\x0c�U\x05��קs���\x00F,6}Ӄ��=x��F�0o\x19|Aqo\r�\x16���K9R\x07�g���{�!w��l\t\x10\x122\x06N\x01\x04\x11��� �F95`"�W(�� \x1cr\x01�@&gt;�\x0fʒe���a�G)R\x11��\nq��\x7f�$+����.�-�K\x7fc��2\x11�)�\x1f�u�\x1f�j�;+�KU����A\x14@m�&lt;���\x003Z�\\��n��C\x1a,˖\\�C\r����`���\x1dj��wx��\x00dZ��$�`Q:\x106�\x04���c�@\x1d�\r�\x16pX�\x14�$��\x13ȍ*n*3�,\x068�\x03&lt;���Ʃ�˥������%ï\x11ƞk1���&gt;��Fx�i��%�Χ{4�90��8�p098=�\\\x0c�[m\x0fQ�/\x04:��jǪ���\x00���\x02ا��3�z`�fGUG\nL\x1b_\x1c�W��3��dɨϯE\x04���ƙR��lz�w��=+������`�p��ԟS�P_�6���:\x10�0\x1d\x0e\x18\x0fJV�\x06N�\x0c�i��� �\'\x020�ķ\x00\x15�\x00\x0cw��Y��֖\x10ƫm)P&gt;Y\x1c�/&lt;��?\x0e*힏ed�H�-(�\x00��\x1d��\x00��*�\x16\x11V�{��7\x16o\x14��@e9��EZ��t������C\n(��\x02���Ii\n�H..\\3Jw\x10\n�&amp;\x07� \x01�8�o\x10�Wz]�ZZyh�%`�r��\x1cg��Ҋ)�+�["֏n���\x1d�����ŶK��T���O��(�d$\x14QE\x03\n(��\n(��\n(��?��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test08_get_sms_code_fail_phone_is_null</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        通过</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <pre>pt1.8: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 109: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 130, in test08_get_sms_code_fail_phone_is_null
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�K�e`d�\x08\x7f��79��H���\x0f~i��zm�ӯ��\x1d\x1eV~{u\'\x1di�2�h�v�(�,bC����RG\'f�y\x19\x1c�&gt;mJI�ڈ�/�����\x1e\x08\x1d���o�\x1b5a��\\_�-̷�#&gt;v�GhQ�\u058b\x0b���֗l�ь������/t�H�3̟e� �]�i��\x1f^�����L���3\x10�ݛ��\x00�a\x07����[\x13�̰N]~US�c�H�ნ��5����j\x16�(��"$�\x01f`\x063���\x1f�&gt;�����ek��\x06o�\x10�\x15wr:��@��\x15\x16���C�\\2�1\x05X\x00��\x00�蔛���M��aou\x0bI͓*\\L˘��Ǳ$\x0c�=�;��N�]�\x17dY66��U�3��w���\x17\x16oc2^���2�y���{�\x1alگ�%����!C�\x00gy�y�\x15\x0eM]J��\x15͆��Q��\x02!#1���&gt;��\x1d�\x00�\x1fY�`B�\\�s���\x7f2MR�d���d�\x12\x17\\y������\n\x18�1��\x00�\x17�Rͩ%�o$i�F�\x12zg�O��t�I+�nU��7������&gt;J�6�A���\x1d�u6�&amp;��h#�W�\x18\x18���\x00�M�Ӭ�\x03ɔEp�[�f�N���@���\x1a8G�\x12,(\x19N��a���Ea��������5Ա�!q�����\x7f�h��5����\x0c?1�,E�3��GQ�F8$�z�]Vh�F-k%��\x00�}�p��@�8;\x15�{�\x07a��8\\���\x19=3YVLtv�\x1b���fܳ*�\x1f�k��3����ٜ�\x03&lt;���_\\\x0c�\x14�\x0eX\x00p�K\x03�Q�1���zD�5��\x19��[�\x06�"��V\x7f�\x16��\x14q�\x7f�j����Hf�W�1�v\x01i\x17h�\x05�=H�\x0eGLc5�5�2�BL�ܕ\\ņ��Ga�py��\x1c����H�5�]��P��;\x1e\x07rFO��\x18ٷ-n-\x17Q\x04Z����h��FA\U00099ea1=227\x0c����V�w�\x12�ka\x0cjۄh���s�\x0fʴ�n ��]Z8�\x17\x00����$u\x07�GZiE\nc\x00�LD�H��vXc�\x0e9?�p}\x12���};\t�O[p-�\x11�\x11K �G�?��S��Ej�d�a�\x08����$\x1c�!N@&gt;���S������$��Q���\x06#�\x0e��\x19��ޢ�M�\x04,�6Tp��@�S��m+�����R�\x04W\x18-\x10��D\x1d\tP9������*k�|�a�e)r��ѡ����\x1d{��S�E�aYcfe,�\x1fi c\'\x1e�#�q�Qyq��y l\x02C�Ol�\x0f~����\x15\x15\x16;;Y��\x0e�|�\x1a���8\x04�$�S����Vc�M&gt;\x08ⶌJ����iQݽ��:�p9\x19�n����O\x13N@S"\x0eH\x19 \x13��&lt;s�&gt;��\x16�l�Y\\+)�\x1eq�\U000a6a68�m�[��4�y��9a��\x04�=:�#&lt;t����\x1e�XN�)$��##\'\x03�8\x18\x19�qE\x1e�\x7f��\x15��c�kwQ��0"�\x16�-�#���\t�\x1b�\x1f����:\x13K�It���**��Y�\x1f��\x0e��\x00OAE\x14ށ-*YvGK\x0c\x10ۡHbHԜ��\x00��RQE\x05�\x1a��\x04\x10IyhZ�hcf�\x18P�\x02v��1�\x1eǁ�8��\x0ej\x177ڃ��B�cb1�J�Q�O\x1dH��M\x14U"\x1e����I�\x01A���\x0f8�R����p\x1d\x14\x027rh��F^����d�\x14�}�8��\x04�\x00JM:�=F!sv�.\x18\x11\x118L�\x1c�u&lt;���\x14P�%�x�DX�*(U\x1d\x00\x18\x02��2�`\x08#\x04\x1e�QH���l\x18��=�\x00}\x07j(������'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test09_get_sms_code_fail_no_img_code</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test10_register_success_param_is_must</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        通过</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <pre>pt1.10: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 108: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 160, in test10_register_success_param_is_must
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�j*\x1b��{]�y�\x19�I���GRzp=k����\x17����\x1d��,y2Kr\x19\x15pp~^\x1b����PpB���\r���x�Q�]:�;\x1b;b\x14?�$y3�\x1c\x1f��:�\x17�o��\x18l.\x1e��.\x08[{�\x065v�0H\x04\x1e��s����]ũ�~�I�����KnF�B\x1bq�h88�@9��"�c�u�mW[��Ym��U�R,\x01�&gt;nq��2G|��wJ�-}9Zӽ�\x00=��Wuyf,��t�5ԛ|�ɍ"P@8Prs���t8�h��K;\t�"�ut��\x0b�+�Va�\x08�C�\x7f�P����p,��}=\x0b\x18f�=�ONJ�\x01�?N�U\x1d:�MV�=7V�2��\x1a%�1\x1c�\x0c�����\x10\x7f\x1e�A\x9d���[�\x05��c\x1a5��q�5��\x1eT\t��g��a��\x0cV������g�܍\x19�$2\x101�s߰8����tK�h��˶��.\x19H��;\x01P�r@\n\x00o^ǰ\r\\�:V����\x18���?%l�I;~�S��&gt;��9��Ќ��c��y��B ��&amp;�m�\x03�\x06}z�3�3��k\x17_h��l��/�\x13y\x13��u�NpH,0z\x128�V4�\x1e�c\x05ݝ���\x15���9S�\t�z�\x1fJ�&lt;W\x05��嶪��w\x10�*\'N�rH�ד�N�ٍ\x18\'&gt;Yo��k1jZM������v�.Wʗw�T\x1c{��\x0f\x07��m|�E���U\x0eb`\x0f�J�ʤc�\t�\'\'�0+���.���Mr�G����L�y\x00�&lt;�8�A����a\x16��^����5ec*�d�pe��ep\x1b\x1f��{��Wdi^��W7ލ�*�����\x00A\x1bO����E\x07\x1f+\x04[\x0f���$\x11y\u038b%\x88�ܮ\\\x02�\x18l�q���j�+�\n_j;ᑬ�讕\x0c�"3��\x088��Fq��M5͕���6\u061c \x12LP��r@-��sc�}��i��曧W�\x06C��\x0c��2s�8�\x18\x1f��6�wZ3�\u05f5[\x1dWH�M�m�E\x13)2yE"�E�\x07�@\x1d�\x01[z\u03835߆���Z3&lt;K\x1ao|(p�\x1c����c���]\x12��*ǨI��w��@ ���rI���\x07�F_�B:j���C�&gt;��ӱN��\x1a[S�ӵ\x17�-"��ӯ,� Wz!x���\t&lt;�\x15Z\x08�u\x0f\x10��}nV�\r�\x16h�M �\x1eGN\x0b\x1f�\x0c�ɮ��K�-��$ܤd!�\x01\x04���\u05ee9�O{�T�g���\x07\x1f)$��\x02I��\u058bY\x15��m-_��kV�5����Q�S�\x1c\x1f)�+���W�A\x04\x1e3��,��&amp;�N����\x03�"n��\x1c\x06+�T�����zV�êk��r��o\x03���&lt;AN��fK\x06\x1d���=F3-|1�Z�%����a���o*�짿�~4���w���ky����\x16Z��Z4-y`J����f$\x00y�0s����\r��0�����Q\x191�\x00!W9黣\x1cc=�5�i�l:]����\x12K���;\x1e�}��4�\x1dV5���e\nr��\x11�#�\x08����Ok[���u�7IӴۡsq=����\x0b&lt;��,F\x14(\x18��9 �&lt;�\x15���0Z薱^�۽©f/\x18b\t$�$v�*冃��y��q����}\t�\x15�A����� [\x1bD\x04%�\n\t��`QS�N�˞]��Jo����(��1\x1b9^J�b\x01=p\t?���$�&lt;��\x00\x05R�G\x00��A&gt;���\x00��h���&amp;�Hn졞[xK�\x02~A�ҩ�$r���Nk[o&amp;\x1bKyռ����2�}��\x1fSE\x151�2 �)�x�Q������\x18�X\x02R1�ʫrO�=1ֺ�\x1d"�ćD2M�iys���1E\x15����AX�E\x14T\x1c�E\x14P\x01E\x14P\x01E\x14P\x07��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test11_register_success_all_params</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        通过</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <pre>pt1.11: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 105: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 186, in test11_register_success_all_params
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00���-��q�&amp;�\x1c\x18�;�\x1fp:s�N\x00�i��S\x0c�\x16q�\x07$4���Q����cV\x15�� 1\x15E +\x12&gt;oS�O�&lt;\x1e:\x13�.�u{u-��k\x1c��l�K�}:zu��V�FNɓ�^Yi-���ݾQ\x19�ܟ��\x07nh��#v�+����bci�\x08\x18\x12H\x00�\x0c\x0f~+\x1fU�T:��\u03a2�m\x04\x0f�d�\x03�����}SO��X �!`6�w\x07&lt;�\x11�=G\\����wn���Άf�F�Y�5���m����q���V\x16�\r֭\x03��}p0�Dq�T\x0e\x07�֗N��/��{됌6�E.Ӂ�}=j�I}�_\x1b\x08.�&lt;�6�&amp;�g�\x00����23ǭ\x12�vo`��kZ�J��Ү\'y23\x1c�á�p�����⾯q4��v����3����62pp\x060}�N��=\x1e-�\x1a���+�w~?��M(M\x19����y��#$Dܜ���\x04g�j\x1f3����+�u;;+]5n\x04\x06�]��\x00�"?\\\x1c\x12\x0f�q��=�ϧ��&amp;�\x7f1\x081+ \\��m�g�?3���\x14v���\x1b�P��x��`q�Bq�\x06=�\u05c8��c�Tr��~�\'�\'�\x07\x7fǷ��m��h;�\x13Q���!{��3��*F��\x01�y�Ұ�#��\x03p�)�\x03�\x14�\x7f�����=Es�j���C�)6��9�\x1f;\x03�\x12\x0e8=@��R\x0b�8ElȰ4{\x13b�*�\x18\x00�t�F=������&amp;�4U_��U�\x00V�\x10�Hя�)\x03&gt;�V��}�\x02a��ҴR\x06P��\'*O$p\x03\x12{�8�C�n͡�/�b�i;o\x12G�,Lz��8�8��֖I"���\x05R2%m��\x0f����\x19&gt;�\x01�&amp;�m\x1a�i\x0cJK*"�,�I\x00w\x00\x00&gt;�\x0f��j���S��.��\x16\x16�-5Ĳ�%�$���v�z\x0e\x01=�\'����d�\x10L��cn�%A�A$�H\x1d���\x15sˎ�\x16��e�\x02#\x00\x1eN2zt��w���\rĶ�k�Ĭ0\x11\'\x00��p9\x01w\x10y\x04�\x13�\x11�W��z�\x05�����k��n��\x03\x00�:����*\x15K��V\x19�\x10-�\x1f�����{s���]by7�������!v�#\x1c~\x1e�Zt�U��\x03&amp;�Jq��\x00�A\x15&lt;�p���\x05��F�D�\x1c�2�\x15��6:v�\r4�����ky$\x1d\'I0��\x07�ʧ]&gt;�8�G�\x14�D\x0f��B�Z�\x180�^�\x0e\x14#�o�9��\x1e����V"Ӵ�-d�i�L�υ�\x19=1��9�X�N���܍\x1aG\x1e"�F2G\x7f���*ݾ�\x0c� �I-%�t�\t\x1c\x01��\x01�ls�\x14�p�w&gt;$�i��W\x1b�\x00n\x1d2��\x18���A��\n��r����4\x16����(�|�H��3�\x00\x002x\x00�{�\x03�ŭ\x1de���dV%2\x19C�(\'9\x1d�\x1d{�qכ6Vv��\x0c0ƀ��&amp;�H��I�\x7f\x96ke�v�_/+p\x1bnF\x06p�d�c�OSۊ��Iɍ$�.@�!UYZE\x19�1��x\x19\uf39e�s��\x15M\x0e�Y\x1aE\x04��/\x04��\x1a*�cB���\x10�]m��\x18�Q��ȑH$\x023�\x1f���E)\x020�{��r��on�0�e�Ǆ��\x18$\x0c��x����\x0bHDV�,h;(��}O�\x14T�T9\x12�E\x15�!E\x14P\x03$�9�l����\x0c��uKD�.�b�yV)æ���c��z����E\x152�R���b\x0c��;;ᐫ.�A��9&lt;玹�R©2\\E$j��U�\x0c�\x18�9����h\x1fq��E+�`A��(�\x13?��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test12_register_fail_phone_is_exist</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        通过</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <pre>pt1.12: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 106: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 212, in test12_register_fail_phone_is_exist
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�\n�\x1b�q�\x7fg\x1b���4�#Fp�1�\x15{�����n`Ԯ\x19�\x1b��Td�HC��\x0c�q�\x04�\x0f@{�\x1d��j\x1a��J\x0e�\x16�Kr�\x01�\t9$�������X��u;c���Λ\x14���\x04@ҝ�����ө\x07�\x15��""f�[���+��fLu\x19�03��u\x03�\'\n\x19g��cma?�Y�$\ue857h페�9\x18 � �zľM��L\x04B��\x12G�+���\r��\x01�\x19�ji�V��\x07}�\\_D�Rf_��\x065y\x01¹�@%H�w\x1c0&lt;p{�h�/�u\x1b�=1!X�$&lt;��\x1c���\x07�aۥW���uXV���\x1f&amp;8�\\q����SXn��\x10�l�.d�nRHMǮ}��q�S�&amp;�ր�J�Ѿ�\x17\x0b��\x11�\x1c��#�\'eY8�\x08�O���9:��\x0b�-$����,\x0b�\x7f=9��뎄���I�\x1b�e��%t`b��\x1d�=H�F9�����\x1d�3\x1b���S��\x1f |\x01���\x00}\x07n��)�\x11ۨ�[L�N��$\x12/\x11�\x19 �3�9��\x07���a�n�����u�p���\x18e������5��,os$7v��{Q�%�aG\x1c\x03�\x03�}kKU���Ak\x10��|�뢁ܰ�ߧ�4��rZ\x03�7KҬuK\x11sv�uq �9v\x05=�=��xy�\x12k�m�2��.ط�\x03���~y�ۭ\x0e�\x00K�i�K\x03�߬,G���G5�i7V�Zd\n��\x0c`�\x02��#&gt;��=\x7f\x13ɢ����~ ����,��9\x1d\x0f�\x15Y�{�r���QX�?\x0e�WMȱh�\x07\x1dk����m��Mi~^�o3\x7f·�@�����%\x12ʍ\x04ꋵ�T\nC\x0c�I��\x03�\x18�\x1c%��O\x1b\x05r�.\x19C\r��s�,\x08�\x18&gt;��qQ$ܓ]\x02��ź��\x12+�Xa��\x1a)K&lt;��ðR@9#��\x1f�kZ�K;�{{�Af0����p�t�q�zՅ�O1"ޒ��\x7f� m^pH\'8�g�8\x03�ʬ�\x03����\x0c�����\x1c�4F6�z�Q��o��h!\x13]Z#|�\x12�`88*z�\x1c����WH�\rW^[٬�\x04�U*��w\x0c�u�s��Ǩε�am/��;]\x11�\x04\x03t��&lt;/Lg&lt;�p}*\x1b\x18���@��a\x1a�\x11��X�ٌ( �ܒ1�z��t�\x0bk���\r����\x00ѥ��Y@��߮?C����K�\x11A6���2\x07O/\'\x07nq��H�ⶭ�\x0b8$Yei��Q���R�\x0fOB;�:֔qG\x0cb8�Q\x07EQ�*�\x1bߨ]\x1c��;i�5�ƙ��u1���p�9�ɨ���\x1a��`��J\x14�I`*A�b3������.[&amp;.mnr\x17\x1a�1[�Eom"��*L�\x10\x16ۂs�H\x18\x1d=*��ioo\x14V�_�%�\x06IWha�\x00\x15�\x18�^O?�CT��}&gt;��&gt;-#c��\x03k~c\x07�5\x06��\x0b�\'x�VtS�3��z�z*�����mu��:�q\x1a����q�EV��n+�\x1f]��*�T6�L�\x0f��iAϷ���QM!��p@�"\x0b�M�*\x01�\x00\x0c`p?*(�@NQ~�#�����\x16Q�\'\x03�p\x06\x07�\\n���jz�6�R�\x19\x15�m��ڡs�z�QEg��&gt;�\x1d�����\x14��"\x07��������\x14Q[\x12\x14QE\x00\x14QE\x00\x14QE\x00\x14QE\x00\x7f��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.13' class='none'>
+    <td class='failCase'><div class='testcase'>test13_register_fail_pwd_is_null</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.13')" >
+        失败</a>
+
+    <div id='div_ft1.13' class="popup_window">
+        <pre>ft1.13: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 103: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 238, in test13_register_fail_pwd_is_null
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00��dҬ\x10I+gj)c�@3O�K�e��kk4�l&lt;M=�b4�ϊ�n�"Ӎ�\x1c�R^�o\x18r�\x14\x18\x18�����/�����˹V�z�P�H�8 }\raCus���C8[y\\+�B��l\x02~V� \x10}�+o�&amp;��\x19��d7��,�N\x15�\x06ޞ�s�\x18�e\x17�n2�ښ\x0bye���Xќȿ��\x19����\x1f.pz�4�I�[?�O�],��\x0b\x0c�Uq�J-E�V[��m\x14��v�3  \x13�3�^��Y�o%���H�)i3�G\n��\x03�у.20A\x14ܵM�\x1bnj����\x7f&amp;���0�d\x18\r��\x199&lt;�6O|\x03ԑW5k��].yQ\x15\\\x01�\r�d������ۍ\x16՚�d3��5ܤ\x16�v@=A㓎�Ok\x12h6\x16�\x07��1fT2ɻ%ق���0�(��\x14/2\r7M���\'�fidP��]�\x06��\x03�8��ӌ��X�\x0f5�;�ncܐ�\x00\x15�\x19�\x1e1�3��\x06�YYN��\x16\x0f$� \r�G�\x0e\x0f^��};�rYܦ�{u\x04�:�����g\x19�Q�j�6�a_tnXj�/�\x1b\x1b�u�f]�P�\x11����v\x0b�o\x7fyo3�\x19`��B�L\x01\'p��\x02���\x03����t�\x00�g��B�\nǱvd�Y���$�s��\x7fjڪ�t/ա���\n�m\x07�8�g��s�=*�;��ڱy`�3f����\x03������\x7f�tU8��n#Y-��n\x10�h�\x10\x0f��\x1c�\x00�\x15W�:\x12Hn�V\x12�\x1bh�\x1d�T`�t\x04�d`�m\x1dG&gt;���G�^:M\x19d}�Au\x12+��0I�\'\x03p�}A����\x1a�kfbY\x14ܗ��v,�\x04nb�NI�\x19G��\x1cQ(���b�rë�6Zt-��y��D\x07�\'�9b}}�l[�O�-�\x1eY_$\x08��\x19�\x1b8�6��\x14�9���t��\x19\x04�H���\x10���=3�\x1f���D�3@�\x7f����\x1f�$�Ս���A��\x10�h���\x1eg��\x1b�\x04�V\x04\x11�\x01\x19��9"��Aq\x7fwiwv\x04V���� s$�(�\x1e���ܞ��i�t6�,r�Y\x16G\x056�\x02�\x1c��O\x18��\t\x19�\x0f-�%\x03"ɽ�6\x03�O=�\x03�\x07n�Qe�9�"�R;�F�h\x1aF�+\x18`�o\x00��\x00�\x1f/�#\x1c��\x00��&gt;�j�\x1b{�y��\x1epC(�|u����idJ�!y$\x18�fh�fa�T7\'9�rO�5\x14s�7Sm��H�\x04�{�2?�^��\x0eN\x01�qN]�~�4�a��=�̉-̇��\x1c\x009�\x0c������NMZkK{{a)�H��۸\x02v�X\x02\x0e\x06H��8�lá�\'��&amp;��PI_8�S&gt;����\x18�&amp;��Iy47V�y7P�z\x11���\x00:\\���^f}ށ\x1a��qpb��6`��\x00aӞ㎘�Wt\x0b\x18��`��_5�rXd��q��`���ic���v�\x00j^yȧ&gt;Lk�I�=���\x06\x06\x05\x11���\x01E\x14V�D�\x11u\x1cX\x1bY\x19��\x05\x7fƳnu\x19\x13�-�D��P��2˜\t&lt;�ǯ\\J��\x00��QDv��ؕ���ƽ2$h�Di\x1aVU\x00��e���\x03\'�\x01E\x14u(�~Dq$�\x15��8�a�\x19�I��\t�s�#��Y���H��o�7%�z��O֊*g�L��c�k�Zl\x12Co��\x17���5�̘�ِ\x0e\x14t\x00\x1c��5�E\x14�\x01E\x14S\x00��(\x00��(\x03��'
+Arguments: ()
+Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 254, in test13_register_fail_pwd_is_null
+    assert_utils(self,response,200,100,"密码不能为空")
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\utils.py", line 10, in assert_utils
+    self.assertEqual(status, response.json().get("status"))
+AssertionError: 100 != 200
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test14_register_fail_img_code_is_wrong</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        通过</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <pre>pt1.14: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 109: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 262, in test14_register_fail_img_code_is_wrong
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00��gR\x1aV�-�\x038¢��z\x7f��X��\x1cYt�������X���aT�N\x14z\x7f�*��\x13j�S�Ck3:�W]�\x18\x13з\'�\x1c\x029\x1c���4^$�\x17:TWKs\x1c\x01R]��s�q\x00���U�8-.���E�\x18��i(���\nF��\x0eJ�=\x17+�X��ɫ�;��\x19n\x1a+x00-�,�y�,T`c\x1d9�\x1d��?T�ӯm,o��x��\x11��v\x7f\x11\x04�\x02\x0f�n8��@9��Y\x04Q&lt;�\x12\x15KaFIǥ%�"[��A\x0bY��D�m]ŞR�͎�w�=��Ⱦ�o\x0e�\x0e��۠�u\r\'�\x0f�����8�w\x04�U\x1b\x18�?\x10D��:������8[oC�?_^x�To���&lt;Ek*J��p�\x15�\\3\x13�����G4�\x15\x18���ڻկ��-��\x1b\x06S�Mj�\x17x\x04�`zg��\x00�U�ˍb�o/�e�L\x01TI�T䏻��`�\'&lt;��O\x12\\j�:z���v�� %���\x1ep\x00\x07�?�j�\r����Kh�\x0bI\x0bo�$\x0c�p{pz��F9\x03\x14"�o\x1b�\x19��]�o&gt;�\x1d�̏eg!+,�\x12\x10\r���\x18�\x063�ؾ�m�&amp;X�Kq4�6����\x1c��\x00�ێ�W×�3i�m\x10A\x1a`4D\x12U�����\x0e��f���-��]\\����\x13!��\x18�rx�玴\x13-ٳ�jɪ}��]Z\'\x01��pTc�\'�?���s�I\x1a\x17�"\tb\x06\x06�1���x��&lt;py�\x16�N�Y�$\x13����\\Q"�T®\x0e\x07Lt�tI\x0f��Ӽ��R]���I\x00 ���\x18\x04�\x06I Q�D�Ée8d���%8��E(IW!v\x11�7\x12M\x15\rˢ���\x1d�I\x01����\x06��_\x07�������ߑ�W-���l/���\x01rgywJ�RL�\r�\x1f�����Y\x1eM�����ÎI�Ls�\n�s�Z�O�Mim3|�\x17N}�{��c��w��vќ�M\x1e���&lt;l~�a#J�\x123\x10Ϝ�1��G�\x0fº;gP�-��˼�X�\x00\x19�c�8$��&lt;�i��E\x15��\x1c�0��h\x15\x06\x00\x00as����hݰ\x03f���]��$�ʯ\x1a��9�\x10:\x1eO\x1c��╭�ؙ;���\x0cZ��],��ݻ��\x1cl1?}����Oש4\x1a\x1b�cS��{G���C!3}��\x07o\x00q��q��y��y$���\x1b���(\x18J�0W�&lt;�{�@�����O��\x1fk\x12@N��c�d\x1e=�\x19�z\x02��e���\x1c�m��#��;L\x1d�r���\x7fɫ��\x1a`� o&gt;R�c\x11�K����\x0e����K�?�{t�)\x1f�\x10\x05Nz�@�\x0e�ϧ�_����\x11\x04\x11E���@�?�V㺲L崋-n�n�\x1b8m��o3|��\x0ep�FH?7\x7fN�S\\�%{�Ing�K���#\x1c\x11aT\x1f��9=���sY\x1e!��Ԭ�kV\x0bun�H��\'�=�~TX��\u07b9��\x05���/��:8�����R�r\x1dJ�BO/PkuW+\x19����9\x1f�XD�\x16�\x19��H,�#\x12I\x19˰�\x06\t\x02�m�ⴶ��\x04\x0b\x1ck�@�`�v�w2��^��C.�2�&amp;YQ���\x0c�^3�\x1f@(��)X���\x04v�R0B�g9$��X��&amp;�\x12ٕY�ms�q�\x10\x0e8��?\x0fƊ(�w\x0e�בU\ue94d��0�9\x1e��*���O�hPIm��A�%�\x1bO9\'$�99��\x14Q}\t��]\n#�[\x1b�RY.\x0cR�X�\x02&gt;\x00 �\x00\x02y#��Ӣ,h��\x15\x14aT\x0c\x00=(��v-�-\x14QT ��(\x00��(\x00��(\x03��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test15_register_fail_sms_code_is_wrong</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        通过</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <pre>pt1.15: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 109: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 288, in test15_register_fail_sms_code_is_wrong
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00��BB�\'�\x19��|�J�Z۴��\x0c��\x10\x1fC���\nG�\\s�z�����\x16���N�\x0cyH�\x1e��Y�^Fޟw�os��";}cS�L�\x16�/m\x14d��\x0bq+�s�\'��NFp@�Tw�\ueb63��MFX�A\x1f�\x1bۨ\x1ea�\x00&gt;G\x0b��x\x1c�lR�^\x18�\x10�E;\x06\x0c��\x10�$dd`\x1c\x1fj�]\x02+��n�Vk�\x10�\x19��T^29\'����\t�_��ݼ˩�{�&lt;M��\\\\O���ec=�����\x1e\x13i�&lt;=\x13\\����6�s�\x1f�\x04}+��=~{\x07���[�\x12�\x05#�\x01�\x07�^1�\x0e���h� ��\r.���O\x1ab5�N\x08\x03�\x0f=&gt;�Z\x0e-\\��\x1d\x7f���z7���������o}&lt;\x06b�,�fq��\x13�s��?^i��뮏vmwy�S`d�\x01�X{���Y:\x06�aq��s,_j��Y�iF�V�dg�_Py\x1d*t*M�B!ww���{8�洴�\x12\x04\'k&gt;0:���v�S���~�\x14��y�e%Rr�&lt;G�a�C\x1d���Y\x17:s�-\x16�sy\x0b&lt;9@\x149\x00\x02p7\x1e��\\���v��9�nu\x0b�\x7fh�\x05l(EA�\x07\x1e���^D6�lw��I\x0e��\x1b[RYX���X\x03�\x08\x18#�\\�@\x189$ii�z,~\x1f���6�\x16�\x17\x05�e��u\x079����\x00a���r�o\x19c\x10 \x06�n\x0e\x01�+��\x0e=y�&lt;\'\x0cRCs�����\x1b�H�\x06#=FO�qI�q��v;E��hlLv��-��D~c�h��\'\x19\x03�Et2^O\x03l������\x1bM�@\x15\x7f�!�H=�\x01\x18#�p\n\\��^f��\x04Ă\x15�N\x0e:����~��X��\x19�.��!`�Ù�\x19A\x188\x0cF\x089#��\x1c�]�n(�\x08\r�\t\x19\x00�*�Ͻ\x19���\nNݟ{#�N?�T2����k��z���V�nLX�K�\x05\x165Pr�H\x00w$�\x15����}\x1aKH�W"�@D�6�\x14�\x03$�*:�pG ��%H�e���s(2�P�=3�8\x01s�\x0cw�\x0cϪ�\x1a0��\x1f3\x02W��EO2�ėm�=\x13VѢСI�G,Jw�b\t ��&lt;�����Y!Ե����V\x18a\x11Dķ�[��\x0e3��霎��R{\r2s�Gke�\x12���h�o���\x00${��Z��,�i\x16�f�#|�싡\x18,z���^q��E\r�D-u4�Hp\x1cHq�̙�x\'���C`�K��n\x0eě\x1f/�]����\x1dq���y.�\x0b�]�p��)2�}�\x0eN\x0e1��(`��6A\x12D���P���\x14ұ����4�\x10M��R�(�ѷ1��aTc\x18ڼ�����m\x7fejW\x0c^���\x03�\x1e\x08�&amp;&gt;�������\x15V�\u0891ɏ\x04�\x13C��7��X������W��+�\x18D6Z��\x17R��\x0eO�I��s[�Q`�H�n��u�\x1d����Ns�B\x7f\x0e~�z\x01ފ訬�\x18��\x00{\x17"\n��D����6IF+�\x01�n\x00�=��\x06\n+^�\x13�Q�0��\x15��\':M���\r���,J��&lt;.p\x0f��0QS-����%�_F�w,�6�\x08�\x02\x0e\x01�\x07���T*�P\x02��\x07AE\x14��\x02;\x0bE\x14U�\x14QE\x00\x14QE\x00\x14QE\x00\x7f��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.16' class='none'>
+    <td class='failCase'><div class='testcase'>test16_register_fail_no_agree_protocol</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.16')" >
+        失败</a>
+
+    <div id='div_ft1.16' class="popup_window">
+        <pre>ft1.16: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 109: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 314, in test16_register_fail_no_agree_protocol
+    logging.info('response = {}'.format(response.text))
+Message: 'response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00�Y���#,�$q�Wv\x00\x0f��\'�zd[kK6�\x08�\x1f\rx~E#&lt;�=q�;��\x08�&lt;㠒\x1b;k��h]�\x18�$1&lt;�A!p\x1b��,8�\x01��\x01���eo\x12�ɢ�@�\x14\x0e&gt;�v��-��\x19\x19&lt;\x11��j��sB\u05fb*�x[O����we\x16�a�Ln�\x16Lp\x10�N[\x1c��\\��d����k�����c,��\x1d\x17\x00�&gt;P:c=O$��mf�o������a\x0c��V]�� \x03�\x00\x7f��z\x14��Z��x�\x16-�k����9�8\x00~\x02�V�T��[����u���7��\x7fǻ��h�\r�w=G��zc9\x06��,5K�T��W�7\x12��\x16\t�T\x0c&gt;\\ǌ\x1e�&lt;���J��~*�e�-�t�Ɏ3*\x07�l\x0fN���\x18Ƕk.�5+=R?\rϩIg\x1a;42Ƽɐx�G\x07\'\x1dp��`�\x1ccd�Ss�:��/ygy*���\x08�$����\x07\x1f��psӮhh�������S-3G&amp;\x12ػ*\x84pF:��~\x1fJК�O�+\x18Vky\x00��d�Px\x04��\t�\x066���!�/�\x11&amp;�i*Z^ɓ�h��\x14��O����C�ü]�б\x05��^8��GIM��\x1b�c|��#\'q�&gt;��qW5�R��J��M�˸�M��\x10s�%I��N?\x10�\x05�ڵ��m\x07���ɛy��9&lt;�����U�]�*�kq\x05���!c�\x12?�c���\x18\x1d\x08�\x07~�\x18{ ��fC��qa���\x06�~.��C�$����\x08\x1c�r8#���4\U000a6593���a-�Y]_8�S��=\x00�C�{�\x1b.�w\x15ż���I\x1ce]^,l���w+Ý�\x03�Ƕs�ַ֗��w\x1c���*��\x1dO\x03\x1d\x019�r=�VO�R�l��ox�\x0bk��#���\x19\x08\x1e��.G�\'Ԛ(\x10^[�\x1d�����[g �\x0c\x0cb��\x19�\x1dK#(r��\x03.2=�x�;I{�\x0b�^Z���W\x10�\'�\x1dż[�}\x7f���]��Fv\x05��q�\x13�\x0e3�q�{��\x16�h\\4Q�D��ѣ1�\x06#\x18l�c��=G\x07�k�^�9mU��Ae\x05�����\x16\u05f8�e\x01��~��\t9&lt;�v�\x05o�Q�j\x1a%̈́O\x1a3DV4���`2��8\x04s��j�ډB�P�\x00l�`�z\x0f�t�\x00&gt;�Mug\x18y&amp;�X\x07�%Hv�8\x03� (?�:SQ��rm����_�V\t��i�\x13\x182\x12kT�\x12E�\x19#���3�Q�\x17Z���5\x19,����+��\x1e$��dp9�H�\x00\x13���\\ޜi:Y�\x0f\x0bu;\x18��;\x07��F0}ON\rY�ǽ��~۫�+��Z\x1f(\x02z��oƦ�\x0e�;�)��N�������d��c!�\x1d��&lt;\x1e�8\x03�r\x06{�x��\x08�Ɵ�=�@v�l\x0bH\x17n���w�@\x00\x128�W\x0f��2��b�\x0f�_?ϊ?�\x13�?���\x00"������k3?K�������"���~�\x7f� ��z\x12I\x1f�z�K�t�\x1a\x17�\x10����$0 \x127p�T`��\x0f\x1c��8���\n�m%��\x0c0��r7�g9���U�tmNH\x15f��UP\t+s\x08G_h��OL���y��)\'�*�\u05f6\x03E\x166�iuy&gt;T��ʥ��g�\t\x03�;�=NrOU�R]2�\x1bDg��$&amp;L�J\x1c\x1ew\x1fL�\x0f�{sN���3mw��6\'g��\x00\\\x01�,\x14\x06�ӌs�\x15qUm��\x11�\x16�\x1a\'��\x18�\'\x03\x00\x03��\x0c\x06\x7f���긫j���/��Q��}�h��@Yy\n\x0bc��\'�NM\x15�w\x0c&gt;w��\n�\x02��8q���&gt;����L�Dn��&amp;�\x00\x02$��Ϧ�ߞTT��E\x15�KC\x14p�$�&amp;�i��gm"E\x14X�F\x18�T\x1es�S�\x15�Y�V6l$���\x0e|ۆ���9�zr\x07j(�[��H�\x1aTQE30��(\x00��(\x01�E\x1c�RTWC�Xd\x1a�&lt;O�hMm�\t�9�\x1f-�eB��s��q�\x0f4QCz\x1aS�ĺn�y%�H�9\x1d��\x10{�~�QEj�)�\x7f��'
+Arguments: ()
+Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 331, in test16_register_fail_no_agree_protocol
+    assert_utils(self,response,200,100,"请同意我们的条款")
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\utils.py", line 10, in assert_utils
+    self.assertEqual(status, response.json().get("status"))
+AssertionError: 100 != 200
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test17_login_success</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test18_login_fail_phone_is_null</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test19_login_fail_pwd_is_null</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='ft1.20' class='none'>
+    <td class='errorCase'><div class='testcase'>test20_login_fail_pwd_is_wrong</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.20')" >
+        错误</a>
+
+    <div id='div_ft1.20' class="popup_window">
+        <pre>ft1.20: Traceback (most recent call last):
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 387, in _make_request
+    six.raise_from(e, None)
+  File "&lt;string&gt;", line 2, in raise_from
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 383, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Python36\lib\http\client.py", line 1331, in getresponse
+    response.begin()
+  File "C:\Python36\lib\http\client.py", line 297, in begin
+    version, status, reason = self._read_status()
+  File "C:\Python36\lib\http\client.py", line 266, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python36\lib\site-packages\requests\adapters.py", line 440, in send
+    timeout=timeout
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Python36\lib\site-packages\urllib3\util\retry.py", line 357, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Python36\lib\site-packages\urllib3\packages\six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 387, in _make_request
+    six.raise_from(e, None)
+  File "&lt;string&gt;", line 2, in raise_from
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 383, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Python36\lib\http\client.py", line 1331, in getresponse
+    response.begin()
+  File "C:\Python36\lib\http\client.py", line 297, in begin
+    version, status, reason = self._read_status()
+  File "C:\Python36\lib\http\client.py", line 266, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_login.py", line 381, in test20_login_fail_pwd_is_wrong
+    response = self.login_api.login(self.session,app.phone)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\api\login_api.py", line 50, in login
+    response = session.post(self.login_url,data=data)
+  File "C:\Python36\lib\site-packages\requests\sessions.py", line 555, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "C:\Python36\lib\site-packages\requests\sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python36\lib\site-packages\requests\sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python36\lib\site-packages\requests\adapters.py", line 490, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>script.test_approve.TestApprove</td>
+        <td>3</td>
+        <td>0</td>
+        <td>2</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c2',3)">详情</a></td>
+    </tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test01_approve_success</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        错误</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <pre>ft2.1: Traceback (most recent call last):
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 387, in _make_request
+    six.raise_from(e, None)
+  File "&lt;string&gt;", line 2, in raise_from
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 383, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Python36\lib\http\client.py", line 1331, in getresponse
+    response.begin()
+  File "C:\Python36\lib\http\client.py", line 297, in begin
+    version, status, reason = self._read_status()
+  File "C:\Python36\lib\http\client.py", line 258, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Python36\lib\socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python36\lib\site-packages\requests\adapters.py", line 440, in send
+    timeout=timeout
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Python36\lib\site-packages\urllib3\util\retry.py", line 357, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Python36\lib\site-packages\urllib3\packages\six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 387, in _make_request
+    six.raise_from(e, None)
+  File "&lt;string&gt;", line 2, in raise_from
+  File "C:\Python36\lib\site-packages\urllib3\connectionpool.py", line 383, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Python36\lib\http\client.py", line 1331, in getresponse
+    response.begin()
+  File "C:\Python36\lib\http\client.py", line 297, in begin
+    version, status, reason = self._read_status()
+  File "C:\Python36\lib\http\client.py", line 258, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Python36\lib\socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', TimeoutError(10060, '由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。', None, 10060, None))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_approve.py", line 30, in test01_approve_success
+    response = self.login_api.login(self.session,app.phone)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\api\login_api.py", line 50, in login
+    response = session.post(self.login_url,data=data)
+  File "C:\Python36\lib\site-packages\requests\sessions.py", line 555, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "C:\Python36\lib\site-packages\requests\sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python36\lib\site-packages\requests\sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python36\lib\site-packages\requests\adapters.py", line 490, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', TimeoutError(10060, '由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。', None, 10060, None))
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='failCase'><div class='testcase'>test02_approve_fail_name_is_null</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        失败</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <pre>ft2.2: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_approve.py", line 53, in test02_approve_fail_name_is_null
+    assert_utils(self,response,200,100,"姓名不能为空")
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\utils.py", line 11, in assert_utils
+    self.assertEqual(desc, response.json().get("description"))
+AssertionError: '姓名不能为空' != 'String index out of range: 1'
+- 姓名不能为空
++ String index out of range: 1
+
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.3' class='none'>
+    <td class='failCase'><div class='testcase'>test03_approve_fail_cardId_is_null</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.3')" >
+        失败</a>
+
+    <div id='div_ft2.3' class="popup_window">
+        <pre>ft2.3: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_approve.py", line 67, in test03_approve_fail_cardId_is_null
+    assert_utils(self,response,200,100,"身份证号不能为空")
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\utils.py", line 11, in assert_utils
+    self.assertEqual(desc, response.json().get("description"))
+AssertionError: '身份证号不能为空' != 'String index out of range: 1'
+- 身份证号不能为空
++ String index out of range: 1
+
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>script.test_trust.TestTrust</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',2)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test01_trust_register</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test02_recharge</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.2')" >
+        通过</a>
+
+    <div id='div_pt3.2' class="popup_window">
+        <pre>pt3.2: --- Logging error ---
+Traceback (most recent call last):
+  File "C:\Python36\lib\logging\__init__.py", line 994, in emit
+    stream.write(msg)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 103: illegal multibyte sequence
+Call stack:
+  File "D:/传智播客/02 授课/深圳17期北京25期-金融项目/day7/python/apiTestP2P_BJ25SZ17/run_suite.py", line 26, in &lt;module&gt;
+    runner.run(suite)
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\lib\HTMLTestRunner_PY3.py", line 720, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Python36\lib\unittest\case.py", line 653, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Python36\lib\unittest\case.py", line 605, in run
+    testMethod()
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\test_trust.py", line 58, in test02_recharge
+    logging.info("get recharge code response = {}".format(response.text))
+Message: 'get recharge code response = ����\x00\x10JFIF\x00\x01\x02\x00\x00\x01\x00\x01\x00\x00��\x00C\x00\x08\x06\x06\x07\x06\x05\x08\x07\x07\x07\t\t\x08\n\x0c\x14\r\x0c\x0b\x0b\x0c\x19\x12\x13\x0f\x14\x1d\x1a\x1f\x1e\x1d\x1a\x1c\x1c $.\' ",#\x1c\x1c(7),01444\x1f\'9=82&lt;.342��\x00C\x01\t\t\t\x0c\x0b\x0c\x18\r\r\x182!\x1c!22222222222222222222222222222222222222222222222222��\x00\x11\x08\x00$\x00d\x03\x01"\x00\x02\x11\x01\x03\x11\x01��\x00\x1f\x00\x00\x01\x05\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x10\x00\x02\x01\x03\x03\x02\x04\x03\x05\x05\x04\x04\x00\x00\x01}\x01\x02\x03\x00\x04\x11\x05\x12!1A\x06\x13Qa\x07"q\x142���\x08#B��\x15R��$3br�\t\n\x16\x17\x18\x19\x1a%&amp;\'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz���������������������������������������������������������������������������\x00\x1f\x01\x00\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b��\x00�\x11\x00\x02\x01\x02\x04\x04\x03\x04\x07\x05\x04\x04\x00\x01\x02w\x00\x01\x02\x03\x11\x04\x05!1\x06\x12AQ\x07aq\x13"2�\x08\x14B����\t#3R�\x15br�\n\x16$4�%�\x17\x18\x19\x1a&amp;\'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz��������������������������������������������������������������������������\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00��_Zm:�yⴚO/���b\x06�;�H�\x00���{��u�O}ux�_\x18��5�Q@��P\x08��?\\v��R�-V�}=�\x08��rW�\t\x1e�S�\x1a�^\x1f\x111����&amp;�\x18��Tg\nG\x0b���#��9�{4e\x06�tΣÒO/���\u0c50�庑���\x15&lt;�sDθ��9HT��Fۻ\x03v\x03\x1c\x03��&lt;�q�[j:ޑ5���\x12�k9�X�\x0f+�#\x1cq��+��՜\x12\\�f8�4�\x04�]���0K\x1c\x05\x00u\x00\x01�\x15Q��..��9m�x����\n�\x04���\x16*��\x02Ì�x���қmh�w����O*#\x0e��$,�\x0f\\��\x1e��\x07�mα�M���q\x06;ev+�6y c���\x00\x1c7G�:u��Z���\u07bb\x19шR��H�$��݃��#�g}u5]Q�k���E��\x05,��"\x1b�\x0b�Ў�\x03&gt;�ǚǿ����k�5+�r��X���U\x03$��8��k[�u-5����)�Xep[\x05IS�\x19\x00\x10A\x1c���k���X:\x1d�W\x16l�x\x03l�&amp;��1�\x8cz�ET��PV:m\x0e�\x00S�����n&lt;��\x04�o�#��N?��\u05fdG�뒋�}:\x17�\x04�奚�\x0f�/�;I8������l5\x1b$\x16�a\x11p`I\x190r\x1b \x03��Ͽ&gt;�*����m恧MI\x18GnT\x0f߯\\�~\\\x12A�:\x1e1�C�:\x0b�s\x11j�U�����\x00\x11O5�:��t$�3�?�U�A�Z�o\x13\x19�I�\x02���R�\x1c�8�z�n�-^\x0b�y��gt�P#/\x1e\x10\x10�f���q�\x1d\x0fN��w\x10�\x14w\x11�&lt;s(*UX�`���\x00�zQ\x17����J�_n��m�)�ٍr=p\\\x11� \x1a*H�m�$Y6���H\n6\x0f��\x08�h�\x0c�E����F\r3�:����\x0bM7���\x029 g�\x04b�x\x14\x08�$\x1eG��i\x03����\x1f�?7�&lt;�栺������X�h�\x1d�C��N\x00$rr:\x0fQ�*e�������ss\x17�u\x0bK{l5���I&amp;a�vPp���g&gt;թ�Y��q\x14*�}�c,���Aǡ �ϽM����\x11s%�*�P�\x11��\x7f\x08\'��f�\x7fn��[��I�I8\x05p�\x0f�cӎzzz�n�����x��OҒ��u��\x00�G��NI�\x0e;~���Χ�ũ��a\r�[\x11$\n$��9*J�\x0ep\x0f�\x1d��5�ՙ���JȊU\x17�\x14�����\x0628�M2K�L�y�I"U?�b�ee�\x1ftrG��4�tW+���⤚��1+\x7f�Ip\x03\x08�\\���S�\x1d�#=8\x1a�O�-�w3\\�X��\x00q�J0e�\x1d�\x1d�0s�\x14]�jHm�@I\x0f��\t��N\x08\x18�7}�;��TM\x03O�n\x04��6\x19�ZL��A�}��\x00�٧t5��T���O-�ڲD�W8�2�Yp\x0b��܂\x0e=9\x1cb��Am�Q=Ψ&lt;���Wz1�.3��\x0cy\r�\x03��\x03��줚�\x01,�-�� 1A(a\x123\x1d�\x01\x189\x0b�H��*Yll/d����\x12�8\x07�6\x06\x17�\'�6��3��×��96�����\x7f�.����X�Y"��˃\x14aFH�\t$����w\x1e�\x1b�-��T6�˶��w�\x1b��o��}z�T_F��%�!�\x1b�3\x1c�\x08*_\x05wq�\x1eO\x00��\x14䷼��F�!�&lt;��\x02�Ӝ� �#�u9\x1e������4���\x18e�\x17\x1c�!.s�\x0c(�B�I���Fc�"H?��E\'M7}~�d������\x13\x0f�ĢI\x14�\x19CeX\x0c�`�&gt;�r0N\x06N\x06+��\x07�u\x1b\x1dVK+YV(�\n\x01�\x19�*\x0f%�E\x14�k\x1dZ����6�6�_�)���%vk��.�\x0e\x14t\x039�\x1d�j�*�\x12�(��\t"����\x16�x�H�`�\\���&gt;\x1d\x10-��Ǘ&gt;�c��\x15\x02�\x01w\x0e\x07?ʊ)H�\x1b���o���K�\x08�\\)T\x1c`�\x1d���Z7Qyw\x11�\x1c��+`)�{\x13�Nq���E49nV����^����\x04vVӪ\x01�N�g�a\x17��P�Z��\x16V�0A泂�\x1c\x0c9^2s�QE\'�!-����8.�!m�zv\x04�(���[�?��'
+Arguments: ()
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>script.tender.tender</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',3)">详情</a></td>
+    </tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test01_get_loaninfo: 获取投资产品详情</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test02_tender</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='pt4.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test03_get_tenderlist: 获取我的投资列表</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>script.tender_process.test_tender_process</td>
+        <td>7</td>
+        <td>1</td>
+        <td>1</td>
+        <td>5</td>
+        <td><a href="javascript:showClassDetail('c5',7)">详情</a></td>
+    </tr>
+
+<tr id='ft5.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test01_register_success</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.1')" >
+        错误</a>
+
+    <div id='div_ft5.1' class="popup_window">
+        <pre>ft5.1: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\tender_process.py", line 28, in test01_register_success
+    response = self.login_api.get_Img_code(self.session, str(r))
+AttributeError: 'LoginAPI' object has no attribute 'get_Img_code'
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.2' class='none'>
+    <td class='failCase'><div class='testcase'>test02_login_success: 登录成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.2')" >
+        失败</a>
+
+    <div id='div_ft5.2' class="popup_window">
+        <pre>ft5.2: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\tender_process.py", line 46, in test02_login_success
+    assert_utils(self,response,200,200,"登录成功")
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\utils.py", line 10, in assert_utils
+    self.assertEqual(status, response.json().get("status"))
+AssertionError: 200 != 100
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test03_trust_success: 开户</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.3')" >
+        错误</a>
+
+    <div id='div_ft5.3' class="popup_window">
+        <pre>ft5.3: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\tender_process.py", line 52, in test03_trust_success
+    logging.info("trust response={}".format(response.json()))
+  File "C:\Python36\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python36\lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 4 column 1 (char 6)
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test04_recharge_success: 充值</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.4')" >
+        错误</a>
+
+    <div id='div_ft5.4' class="popup_window">
+        <pre>ft5.4: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\tender_process.py", line 69, in test04_recharge_success
+    response = self.trust_api.get_recharge_verify_code(self.session, str(r))
+AttributeError: 'TrustAPI' object has no attribute 'get_recharge_verify_code'
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test05_get_loaninfo: 获取投资产品详情</div></td>
+    <td colspan='5' align='center'>通过</td>
+</tr>
+
+<tr id='ft5.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test06_tender</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.6')" >
+        错误</a>
+
+    <div id='div_ft5.6' class="popup_window">
+        <pre>ft5.6: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\tender_process.py", line 103, in test06_tender
+    logging.info("tender response = {}".format(response.json()))
+  File "C:\Python36\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python36\lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 4 column 1 (char 6)
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.7' class='none'>
+    <td class='errorCase'><div class='testcase'>test07_get_tenderlist: 获取我的投资列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.7')" >
+        错误</a>
+
+    <div id='div_ft5.7' class="popup_window">
+        <pre>ft5.7: Traceback (most recent call last):
+  File "D:\传智播客\02 授课\深圳17期北京25期-金融项目\day7\python\apiTestP2P_BJ25SZ17\script\tender_process.py", line 121, in test07_get_tenderlist
+    logging.info("get_tender response = {}".format(response.json()))
+  File "C:\Python36\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python36\lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 4 column 1 (char 6)
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>35</td>
+            <td>23</td>
+            <td>5</td>
+            <td>7</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:23, name:'通过'},
+                        {value:5, name:'失败'},
+                        {value:7, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>

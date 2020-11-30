@@ -1,0 +1,35 @@
+2020-11-30 14:32:35,083 ERROR [root] [__init__.py(<module>:5)] - error
+2020-11-30 14:32:35,085 INFO [root] [__init__.py(<module>:6)] - info
+2020-11-30 14:32:35,921 INFO [root] [test_login_params.py(setUpClass:19)] - sql1 = delete i.* from mb_member_info i inner join mb_member m on i.member_id = m.id where m.phone in (13017172525,13017172526,13017172527,13017172528,13017172529);
+2020-11-30 14:32:36,135 INFO [root] [test_login_params.py(setUpClass:22)] - sql2 = delete l.* from mb_member_login_log l inner join mb_member m on l.member_id = m.id where m.phone in (13017172525,13017172526,13017172527,13017172528,13017172529);
+2020-11-30 14:32:36,376 INFO [root] [test_login_params.py(setUpClass:25)] - sql3 = delete from mb_member where phone in (13017172525,13017172526,13017172527,13017172528,13017172529);
+2020-11-30 14:32:36,617 INFO [root] [test_login_params.py(setUpClass:28)] - sql4 = delete from mb_member_register_log where phone in (13017172525,13017172526,13017172527,13017172528,13017172529);
+2020-11-30 14:32:37,114 INFO [root] [test_login_params.py(test01_get_img_code:53)] - response = <!doctype html><html lang="en"><head><title>HTTP Status 404 – Not Found</title><style type="text/css">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1><hr class="line" /><p><b>Type</b> Status Report</p><p><b>Message</b> /common/public/verifycode1/</p><p><b>Description</b> The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><hr class="line" /><h3>Apache Tomcat/7.0.99</h3></body></html>
+2020-11-30 14:32:37,249 INFO [root] [test_login_params.py(test01_get_img_code:53)] - response = <!doctype html><html lang="en"><head><title>HTTP Status 400 – Bad Request</title><style type="text/css">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1><hr class="line" /><p><b>Type</b> Status Report</p><p><b>Description</b> The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).</p><hr class="line" /><h3>Apache Tomcat/7.0.99</h3></body></html>
+2020-11-30 14:32:37,508 INFO [root] [test_login_params.py(test05_get_sms_code_success_param_is_true:115)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:37,748 INFO [root] [test_login_params.py(test06_get_sms_code_fail_img_code_is_wrong:137)] - response = {'status': 100, 'description': '图片验证码错误'}
+2020-11-30 14:32:38,000 INFO [root] [test_login_params.py(test07_get_sms_code_fail_img_code_is_null:156)] - response = {'status': 100, 'description': '图片验证码错误'}
+2020-11-30 14:32:38,239 INFO [root] [test_login_params.py(test08_get_sms_code_fail_phone_is_null:175)] - response = {'status': 100}
+2020-11-30 14:32:38,368 INFO [root] [test_login_params.py(test09_get_sms_code_fail_no_img_code:186)] - response = {'status': 100, 'description': '图片验证码错误'}
+2020-11-30 14:32:38,627 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:38,719 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 200, 'data': {'isLogin': '1'}, 'description': '注册成功'}
+2020-11-30 14:32:38,974 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:39,069 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 200, 'data': {'isLogin': '1'}, 'description': '注册成功'}
+2020-11-30 14:32:39,313 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:39,381 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 100, 'description': '手机已存在!'}
+2020-11-30 14:32:39,639 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:39,739 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 200, 'data': {'isLogin': '1'}, 'description': '注册成功'}
+2020-11-30 14:32:39,994 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:40,065 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 100, 'description': '验证码错误!'}
+2020-11-30 14:32:40,325 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:40,399 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 100, 'description': '验证码错误'}
+2020-11-30 14:32:40,638 INFO [root] [test_login_params.py(test10_register:206)] - response = {'status': 200, 'description': '短信发送成功'}
+2020-11-30 14:32:40,738 INFO [root] [test_login_params.py(test10_register:213)] - response = {'status': 200, 'data': {'isLogin': '1'}, 'description': '注册成功'}
+2020-11-30 14:32:40,890 INFO [root] [test_login_params.py(test17_login_success:404)] - response = {'status': 200, 'description': '登录成功'}
+2020-11-30 14:32:41,033 INFO [root] [test_login_params.py(test18_login_fail_phone_is_null:413)] - response = {'status': 100, 'description': '用户名不能为空'}
+2020-11-30 14:32:41,172 INFO [root] [test_login_params.py(test19_login_fail_pwd_is_null:422)] - response = {'status': 100, 'description': '密码不能为空'}
+2020-11-30 14:32:41,312 INFO [root] [test_login_params.py(test20_login_fail_pwd_is_wrong:431)] - first response = {'status': 100, 'data': {'login_error': 2}, 'description': '密码错误1次,达到3次将锁定账户'}
+2020-11-30 14:32:41,393 INFO [root] [test_login_params.py(test20_login_fail_pwd_is_wrong:435)] - secode response = {'status': 100, 'data': {'login_error': 3}, 'description': '密码错误2次,达到3次将锁定账户'}
+2020-11-30 14:32:41,466 INFO [root] [test_login_params.py(test20_login_fail_pwd_is_wrong:439)] - third response = {'status': 100, 'description': '由于连续输入错误密码达到上限，账号已被锁定，请于1.0分钟后重新登录'}
+2020-11-30 14:32:41,540 INFO [root] [test_login_params.py(test20_login_fail_pwd_is_wrong:443)] - forth response = {'status': 100, 'description': '由于连续输入错误密码达到上限，账号已被锁定，请于1.0分钟后重新登录'}
+2020-11-30 14:33:41,628 INFO [root] [test_login_params.py(test20_login_fail_pwd_is_wrong:448)] - five response = {'status': 200, 'description': '登录成功'}

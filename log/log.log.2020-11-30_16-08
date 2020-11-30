@@ -1,0 +1,4 @@
+2020-11-30 16:07:47,864 ERROR [root] [__init__.py(<module>:5)] - error
+2020-11-30 16:07:47,868 INFO [root] [__init__.py(<module>:6)] - info
+2020-11-30 16:08:12,276 ERROR [root] [__init__.py(<module>:5)] - error
+2020-11-30 16:08:12,277 INFO [root] [__init__.py(<module>:6)] - info
