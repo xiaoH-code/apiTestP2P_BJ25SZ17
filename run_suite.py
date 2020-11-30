@@ -4,7 +4,7 @@ import unittest
 from script.tender import tender
 from script.tender_process import test_tender_process
 from script.test_approve import TestApprove
-from script.test_login import TestLogin
+from script.test_login_params import TestLogin
 from script.test_trust import TestTrust
 import app
 from lib.HTMLTestRunner_PY3 import HTMLTestRunner
@@ -13,6 +13,7 @@ from lib.HTMLTestRunner_PY3 import HTMLTestRunner
 suite = unittest.TestSuite()
 
 # 将所有测试脚本添加到测试套件
+#suite.addTest(unittest.makeSuite(TestLogin))
 suite.addTest(unittest.makeSuite(TestLogin))
 suite.addTest(unittest.makeSuite(TestApprove))
 suite.addTest(unittest.makeSuite(TestTrust))
