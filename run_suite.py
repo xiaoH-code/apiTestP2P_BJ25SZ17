@@ -20,7 +20,8 @@ suite.addTest(unittest.makeSuite(TestTrust))
 suite.addTest(unittest.makeSuite(tender))
 suite.addTest(unittest.makeSuite(test_tender_process))
 
-report_file = app.BASE_DIR + "/report/report{}.html".format(time.strftime("%Y%m%d_%H%M%S"))
+#report_file = app.BASE_DIR + "/report/report{}.html".format(time.strftime("%Y%m%d_%H%M%S"))
+report_file = app.BASE_DIR + "/report/report.html"
 # 运行套件，并将运行结果写入到测试报告
 with open(report_file,'wb') as f:
     runner = HTMLTestRunner(f,title='金融项目接口自动化测试报告',description="v1.0")
